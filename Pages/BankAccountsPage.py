@@ -9,7 +9,8 @@ class BankAccountsPage(BasePage):
     BANK_NAME_INPUT = (By.ID, 'bankaccount-bankName-input')
     ROUTING_NUMBER_INPUT = (By.ID, 'bankaccount - routingNumber - input')
     ACCOUNT_NUMBER_INPUT = (By.ID, 'bankaccount-accountNumber-input')
-    SAVE_CREATED_ACCOUNT_BTN = (By.CSS_SELECTOR, 'button.MuiButton-root')
+    SAVE_CREATED_ACCOUNT_BTN = (By.CSS_SELECTOR, 'a.MuiButton-root:nth-child(1)')
+    DELETE_BANK_ACCOUNT_BTN = (By.CSS_SELECTOR, '.MuiGrid-align-items-xs-flex-start > div:nth-child(2)')
 
     def create_bank_account(self):
         self.do_click(self.CREATE_BANK_ACCOUNT_BTN)
@@ -17,3 +18,6 @@ class BankAccountsPage(BasePage):
         self.do_send_keys(self.ROUTING_NUMBER_INPUT, database.TestData.ROUTING_NUMBER)
         self.do_send_keys(self.ACCOUNT_NUMBER_INPUT, database.TestData.ACCOUNT_NUMBER)
         self.do_click(self.SAVE_CREATED_ACCOUNT_BTN)
+
+    def delete_bank_account(self):
+        self.do_click(self.DELETE_BANK_ACCOUNT_BTN)
