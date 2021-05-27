@@ -8,7 +8,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 
 @pytest.fixture
 def base_url():
-    return 'http://localhost:3000/'
+    return 'http://localhost:3000'
 
 
 @pytest.fixture

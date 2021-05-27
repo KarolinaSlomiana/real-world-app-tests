@@ -1,7 +1,15 @@
-from pages.base_page import BasePage
+from pages.main_page import MainPage
+from selenium.webdriver.common.by import By
 
 
-class CreateBankAccount(BasePage):
+class CreateBankAccount(MainPage):
+
+    # locators
+    BANK_ACC_NAME_INPUT = (By.ID, "bankaccount-bankName-input")
+    BANK_ACC_ROUTING_NUM_INPUT = (By.ID, "bankaccount-routingNumber-input")
+    BANK_ACC_NUM_INPUT = (By.ID, "bankaccount-accountNumber-input")
+    SAVE_BANK_ACC_BTN = (By.CSS_SELECTOR, ".MuiButtonBase-root[type='submit']")
+
     def __init__(self, driver) -> None:
         super().__init__(driver)
 
@@ -10,9 +18,9 @@ class CreateBankAccount(BasePage):
 
     def create_bank_account(self, bank_name, routing_number, account_number):
         driver = self.driver
-        driver.find_element_by_id("bankaccount-bankName-input").send_keys(bank_name)
-        driver.find_element_by_id("bankaccount - routingNumber - input").send_keys(routing_number)
-        driver.find_element_by_id("bankaccount-accountNumber-input").send_keys(account_number)
-        driver.find_element_by_css_selector("a.MuiButton-root:nth-child(1)").click()
-        from pages.bank_accounts.bank_accounts import BankAccounts
+        self.do_send_keys(self.BANK_ACC_NAME_INPUT, bank_name)
+        self.do_send_keys(self.BANK_ACC_ROUTING_NUM_INPUT, routing_number)
+        self.do_send_keys(self.BANK_ACC_NUM_INPUT, account_number)
+        self.do_click(self.SAVE_BANK_ACC_BTN)
+        from pages.bank_accounts.bank_accounts_tab import BankAccounts
         return BankAccounts(driver)
