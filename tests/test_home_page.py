@@ -1,11 +1,12 @@
 import pytest
 from pages.sign_in_page import SignInPage
+from assets.data import TestData
 
 
 @pytest.fixture
 def home_tab(driver):
     sign_in_page = SignInPage(driver)
-    home_tab = sign_in_page.do_login("Katharina_Bernier", "s3cret")
+    home_tab = sign_in_page.do_login(TestData.USERNAME, TestData.PASSWORD)
     return home_tab
 
 

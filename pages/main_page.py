@@ -18,7 +18,7 @@ class MainPage(BasePage):
         super().__init__(driver)
 
     def is_at(self):
-        return self.driver.current_url.endswith("/")
+        return False
 
     def hide_side_menu(self):
         self.do_click(self.SIDE_MENU_BTN)
@@ -51,9 +51,9 @@ class MainPage(BasePage):
     def logout(self):
         self.do_click(self.LOGOUT_BTN)
         from pages.sign_in_page import SignInPage
-        return SignInPage
+        return SignInPage(self.driver)
 
     def go_to_new_transaction_tab(self):
         self.do_click(self.NEW_TRANSACTION_BTN)
         from pages.new_transaction_tab import NewTransaction
-        return NewTransaction
+        return NewTransaction(self.driver)

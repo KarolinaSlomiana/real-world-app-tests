@@ -9,10 +9,8 @@ class NewTransaction(MainPage):
     FIRST_ITEM_IN_THE_CONTACT_LIST = (By.CSS_SELECTOR, "li.MuiListItem-root:nth-child(1)")
     TRANSACTION_AMOUNT_INPUT = (By.ID, "amount")
     TRANSACTION_NOTE_INPUT = (By.ID, "transaction-create-description-input")
-    PAYMENT_REQUEST_BTN = (By.CSS_SELECTOR, "div.MuiGrid-container:nth-child(3) > div:nth-child(1) >"
-                                            " button:nth-child(1)")
-    PAYMENT_BTN = (By.CSS_SELECTOR, "div.MuiGrid-container:nth-child(3) > div:nth-child(2) >"
-                                    " button:nth-child(1)")
+    PAYMENT_REQUEST_BTN = (By.CSS_SELECTOR, 'button[data-test="transaction-create-submit-request"]')
+    PAYMENT_BTN = (By.CSS_SELECTOR, 'button[data-test="transaction-create-submit-payment"]')
 
     def __init__(self, driver) -> None:
         super().__init__(driver)
@@ -22,6 +20,10 @@ class NewTransaction(MainPage):
 
     def choose_first_item_in_the_contact_list(self):
         self.do_click(self.FIRST_ITEM_IN_THE_CONTACT_LIST)
+
+    def choose_nth_item_in_the_contact_list(self, n):
+        NTH_ITEM_IN_THE_CONTACT_LIST = (By.CSS_SELECTOR, f"li.MuiListItem-root:nth-child({n})")
+        self.do_click(NTH_ITEM_IN_THE_CONTACT_LIST)
 
     def choose_amount(self, amount):
         self.do_send_keys(self.TRANSACTION_AMOUNT_INPUT, amount)

@@ -1,5 +1,6 @@
 from pages.main_page import MainPage
 from selenium.webdriver.common.by import By
+from assets.data import TestData
 
 
 class Home(MainPage):
@@ -14,7 +15,7 @@ class Home(MainPage):
         super().__init__(driver)
 
     def is_at(self):
-        return self.driver.current_url("http://localhost:3000/")
+        return self.driver.current_url == TestData.BASE_URL
 
     def filter_transactions(self, association, date, amount):
         if association == "everyone":
