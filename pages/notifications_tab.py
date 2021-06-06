@@ -1,4 +1,4 @@
-from pages.main_page import MainPage
+from pages.main_layout import MainPage
 
 
 class Notifications(MainPage):

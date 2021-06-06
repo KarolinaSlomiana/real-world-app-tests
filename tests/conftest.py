@@ -5,10 +5,12 @@ import pytest
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 
+from tests.test_home_page.data import HomePageData
+
 
 @pytest.fixture
 def base_url():
-    return 'http://localhost:3000'
+    return HomePageData.HOME_PAGE_URL
 
 
 @pytest.fixture

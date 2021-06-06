@@ -13,6 +13,7 @@ class MainPage(BasePage):
     NOTIFICATIONS_BELL_BTN = (By.CSS_SELECTOR, "a.MuiIconButton-root > span:nth-child(1)")
     LOGOUT_BTN = (By.CSS_SELECTOR, "div.MuiListItem-root")
     NEW_TRANSACTION_BTN = (By.CSS_SELECTOR, ".MuiButton-label")
+    USER_AVATAR_NAME = (By.CSS_SELECTOR, 'h6.MuiTypography-root[data-test="sidenav-user-full-name"]')
 
     def __init__(self, driver) -> None:
         super().__init__(driver)
@@ -57,3 +58,8 @@ class MainPage(BasePage):
         self.do_click(self.NEW_TRANSACTION_BTN)
         from pages.new_transaction_tab import NewTransaction
         return NewTransaction(self.driver)
+
+    def get_avatar_name_text(self):
+        text = self.get_element_text(self.USER_AVATAR_NAME)
+        return text
+
